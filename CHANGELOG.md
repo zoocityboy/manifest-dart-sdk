@@ -1,4 +1,9 @@
+## 0.1.2
+
+- README.md fixes
+
 ## 0.1.1
+
 **FIX**: 
 - WASM compatible
 

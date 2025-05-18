@@ -36,7 +36,7 @@ Add this package to your project's dependencies:
 
 ```yaml
 dependencies:
-  manifest-dart-sdk: ^0.1.1
+  manifest-dart-sdk: 
 ```
 
 Then run:
