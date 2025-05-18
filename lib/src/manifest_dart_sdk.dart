@@ -3,7 +3,6 @@ import 'dart:typed_data';
 
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
-import 'package:universal_io/io.dart' show SocketException, HttpException;
 
 import 'base_sdk.dart';
 import 'exceptions.dart';
@@ -274,14 +273,6 @@ class Manifest extends BaseSDK {
         default:
           throw ArgumentError('Invalid HTTP method: $method');
       }
-    } on SocketException catch (e) {
-      throw NetworkException(
-        'Network error: Unable to connect to the server. Please check your internet connection.',
-        e,
-        StackTrace.current,
-      );
-    } on HttpException catch (e) {
-      throw NetworkException('HTTP error: ${e.message}', e, StackTrace.current);
     } catch (e) {
       throw NetworkException('Unknown network error: ${e.toString()}', e, StackTrace.current);
     }
@@ -389,8 +380,6 @@ class Manifest extends BaseSDK {
             throw ApiException.fromResponse(response);
         }
       }
-    } on SocketException catch (e) {
-      throw NetworkException('Network error during file upload: ${e.message}', e, StackTrace.current);
     } catch (e) {
       if (e is ManifestException) {
         rethrow;
@@ -462,8 +451,6 @@ class Manifest extends BaseSDK {
             throw ApiException.fromResponse(response);
         }
       }
-    } on SocketException catch (e) {
-      throw NetworkException('Network error during image upload: ${e.message}', e, StackTrace.current);
     } catch (e) {
       if (e is ManifestException) {
         rethrow;
