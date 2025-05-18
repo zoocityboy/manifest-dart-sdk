@@ -1,4 +1,4 @@
-part of 'manifest.dart';
+part of 'manifest_dart_sdk.dart';
 
 /// Class for handling single entity operations
 class SingleEntity {

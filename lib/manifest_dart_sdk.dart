@@ -6,5 +6,5 @@
 library;
 
 // Export all required components
-export 'src/manifest.dart';
+export 'src/manifest_dart_sdk.dart';
 export 'src/exceptions.dart';

@@ -1,13 +1,13 @@
 import 'dart:convert';
-import 'dart:io' show SocketException, HttpException;
 import 'dart:typed_data';
 
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
-import 'base_sdk.dart';
-import 'paginator.dart';
+import 'package:universal_io/io.dart' show SocketException, HttpException;
 
+import 'base_sdk.dart';
 import 'exceptions.dart';
+import 'paginator.dart';
 
 part 'single_entity.dart';
 
@@ -64,11 +64,7 @@ class Manifest extends BaseSDK {
   /// [paginationParams] - Optional pagination parameters.
   ///
   /// Returns a Future that resolves a Paginator object.
-  Future<Paginator<T>> find<T>({
-    int? page,
-    int? perPage,
-    T Function(Map<String, dynamic>)? fromJson,
-  }) async {
+  Future<Paginator<T>> find<T>({int? page, int? perPage, T Function(Map<String, dynamic>)? fromJson}) async {
     final response = await _fetch(
       path: '/collections/$slug',
       queryParams: {
@@ -93,10 +89,7 @@ class Manifest extends BaseSDK {
   /// Returns the item of the entity.
   /// Example: client.from('cats').findOneById(1);
   Future<T> findOneById<T>(int id) async {
-    final response = await _fetch(
-      path: '/collections/$slug/$id',
-      queryParams: null,
-    );
+    final response = await _fetch(path: '/collections/$slug/$id', queryParams: null);
 
     return response as T;
   }
@@ -107,11 +100,7 @@ class Manifest extends BaseSDK {
   ///
   /// Returns the created item.
   Future<T> create<T>(Map<String, dynamic> itemDto) async {
-    final response = await _fetch(
-      path: '/collections/$slug',
-      method: 'POST',
-      body: itemDto,
-    );
+    final response = await _fetch(path: '/collections/$slug', method: 'POST', body: itemDto);
 
     return response as T;
   }
@@ -124,11 +113,7 @@ class Manifest extends BaseSDK {
   /// Returns the updated item.
   /// Example: client.from('cats').update(1, { 'name': 'updated name' });
   Future<T> update<T>(int id, Map<String, dynamic> itemDto) async {
-    final response = await _fetch(
-      path: '/collections/$slug/$id',
-      method: 'PUT',
-      body: itemDto,
-    );
+    final response = await _fetch(path: '/collections/$slug/$id', method: 'PUT', body: itemDto);
 
     return response as T;
   }
@@ -141,11 +126,7 @@ class Manifest extends BaseSDK {
   /// Returns the updated item.
   /// Example: client.from('cats').patch(1, { 'name': 'updated name' });
   Future<T> patch<T>(int id, Map<String, dynamic> itemDto) async {
-    final response = await _fetch(
-      path: '/collections/$slug/$id',
-      method: 'PATCH',
-      body: itemDto,
-    );
+    final response = await _fetch(path: '/collections/$slug/$id', method: 'PATCH', body: itemDto);
 
     return response as T;
   }
@@ -279,25 +260,13 @@ class Manifest extends BaseSDK {
           response = await http.get(url, headers: _headers);
           break;
         case 'POST':
-          response = await http.post(
-            url,
-            headers: _headers,
-            body: body != null ? json.encode(body) : null,
-          );
+          response = await http.post(url, headers: _headers, body: body != null ? json.encode(body) : null);
           break;
         case 'PUT':
-          response = await http.put(
-            url,
-            headers: _headers,
-            body: body != null ? json.encode(body) : null,
-          );
+          response = await http.put(url, headers: _headers, body: body != null ? json.encode(body) : null);
           break;
         case 'PATCH':
-          response = await http.patch(
-            url,
-            headers: _headers,
-            body: body != null ? json.encode(body) : null,
-          );
+          response = await http.patch(url, headers: _headers, body: body != null ? json.encode(body) : null);
           break;
         case 'DELETE':
           response = await http.delete(url, headers: _headers);
@@ -314,11 +283,7 @@ class Manifest extends BaseSDK {
     } on HttpException catch (e) {
       throw NetworkException('HTTP error: ${e.message}', e, StackTrace.current);
     } catch (e) {
-      throw NetworkException(
-        'Unknown network error: ${e.toString()}',
-        e,
-        StackTrace.current,
-      );
+      throw NetworkException('Unknown network error: ${e.toString()}', e, StackTrace.current);
     }
 
     // Handle different response status codes
@@ -374,15 +339,8 @@ class Manifest extends BaseSDK {
   /// - [AuthenticationException] if not authenticated or not authorized
   /// - [ValidationException] for invalid file data
   /// - [ApiException] for other API errors
-  Future<Map<String, dynamic>> upload(
-    String property,
-    Uint8List file,
-    String filename,
-  ) async {
-    var request = http.MultipartRequest(
-      'POST',
-      Uri.parse('$baseUrl/upload/file'),
-    );
+  Future<Map<String, dynamic>> upload(String property, Uint8List file, String filename) async {
+    var request = http.MultipartRequest('POST', Uri.parse('$baseUrl/upload/file'));
 
     if (_headers.containsKey('Authorization')) {
       request.headers['Authorization'] = _headers['Authorization']!;
@@ -432,21 +390,12 @@ class Manifest extends BaseSDK {
         }
       }
     } on SocketException catch (e) {
-      throw NetworkException(
-        'Network error during file upload: ${e.message}',
-        e,
-        StackTrace.current,
-      );
+      throw NetworkException('Network error during file upload: ${e.message}', e, StackTrace.current);
     } catch (e) {
       if (e is ManifestException) {
         rethrow;
       }
-      throw ApiException(
-        'File upload error: ${e.toString()}',
-        0,
-        '',
-        stackTrace: StackTrace.current,
-      );
+      throw ApiException('File upload error: ${e.toString()}', 0, '', stackTrace: StackTrace.current);
     }
   }
 
@@ -463,15 +412,8 @@ class Manifest extends BaseSDK {
   /// - [AuthenticationException] if not authenticated or not authorized
   /// - [ValidationException] for invalid image data
   /// - [ApiException] for other API errors
-  Future<Map<String, dynamic>> uploadImage(
-    String property,
-    Uint8List image,
-    String filename,
-  ) async {
-    var request = http.MultipartRequest(
-      'POST',
-      Uri.parse('$baseUrl/upload/image'),
-    );
+  Future<Map<String, dynamic>> uploadImage(String property, Uint8List image, String filename) async {
+    var request = http.MultipartRequest('POST', Uri.parse('$baseUrl/upload/image'));
 
     if (_headers.containsKey('Authorization')) {
       request.headers['Authorization'] = _headers['Authorization']!;
@@ -521,21 +463,12 @@ class Manifest extends BaseSDK {
         }
       }
     } on SocketException catch (e) {
-      throw NetworkException(
-        'Network error during image upload: ${e.message}',
-        e,
-        StackTrace.current,
-      );
+      throw NetworkException('Network error during image upload: ${e.message}', e, StackTrace.current);
     } catch (e) {
       if (e is ManifestException) {
         rethrow;
       }
-      throw ApiException(
-        'Image upload error: ${e.toString()}',
-        0,
-        '',
-        stackTrace: StackTrace.current,
-      );
+      throw ApiException('Image upload error: ${e.toString()}', 0, '', stackTrace: StackTrace.current);
     }
   }
 
@@ -552,10 +485,8 @@ class Manifest extends BaseSDK {
   // Helper to determine file content type
   String _getFileType(String filename) {
     if (filename.endsWith('.pdf')) return 'application/pdf';
-    if (filename.endsWith('.doc') || filename.endsWith('.docx'))
-      return 'application/msword';
-    if (filename.endsWith('.xls') || filename.endsWith('.xlsx'))
-      return 'application/vnd.ms-excel';
+    if (filename.endsWith('.doc') || filename.endsWith('.docx')) return 'application/msword';
+    if (filename.endsWith('.xls') || filename.endsWith('.xlsx')) return 'application/vnd.ms-excel';
     if (filename.endsWith('.txt')) return 'text/plain';
     return 'application/octet-stream';
   }
