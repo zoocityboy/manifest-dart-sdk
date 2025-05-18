@@ -8,6 +8,7 @@ class Paginator<T> {
   final int from;
   final int to;
 
+  /// Constructor
   Paginator({
     required this.data,
     required this.currentPage,
@@ -18,10 +19,8 @@ class Paginator<T> {
     required this.to,
   });
 
-  factory Paginator.fromJson(
-    Map<String, dynamic> json,
-    T Function(dynamic) fromJson,
-  ) {
+  /// Factory constructor to create a Paginator from JSON
+  factory Paginator.fromJson(Map<String, dynamic> json, T Function(dynamic) fromJson) {
     final items = (json['data'] as List).map((item) => fromJson(item)).toList();
 
     return Paginator<T>(
@@ -35,15 +34,8 @@ class Paginator<T> {
     );
   }
 
+  /// Factory constructor to create an empty Paginator
   factory Paginator.empty() {
-    return Paginator<T>(
-      data: [],
-      currentPage: 1,
-      lastPage: 1,
-      total: 0,
-      perPage: 10,
-      from: 0,
-      to: 0,
-    );
+    return Paginator<T>(data: [], currentPage: 1, lastPage: 1, total: 0, perPage: 10, from: 0, to: 0);
   }
 }

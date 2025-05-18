@@ -60,9 +60,11 @@ class Manifest extends BaseSDK {
 
   /// Get the paginated list of items of the entity.
   ///
-  /// [paginationParams] - Optional pagination parameters.
+  /// [page] The page number to fetch (optional).
+  /// [perPage] The number of items per page (optional).
+  /// [fromJson] A function to convert each item from JSON (optional).
   ///
-  /// Returns a Future that resolves a Paginator object.
+  /// Returns a Future that resolves to a [Paginator] object containing the items.
   Future<Paginator<T>> find<T>({int? page, int? perPage, T Function(Map<String, dynamic>)? fromJson}) async {
     final response = await _fetch(
       path: '/collections/$slug',
@@ -81,9 +83,7 @@ class Manifest extends BaseSDK {
     return Paginator<T>.fromJson(response, (item) => item as T);
   }
 
-  /// Get an item of the entity.
-  ///
-  /// [id] The id of the item to get.
+  /// Get an item of the entity by its [id].
   ///
   /// Returns the item of the entity.
   /// Example: client.from('cats').findOneById(1);
