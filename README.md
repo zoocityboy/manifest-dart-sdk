@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://manifest.build/#gh-light-mode-only">
+  <a href="https://manifest.build/" target="_blank">
     <picture id="github_header">
       <source media="(prefers-color-scheme: dark)" srcset="https://manifest.build/assets/images/logo-transparent.svg">
       <img alt="Doki Dont kill my app!" src="https://manifest.build/assets/images/logo-transparent.svg" height="55px" alt="Manifest logo" title="Manifest - The 1-file micro-backend">
