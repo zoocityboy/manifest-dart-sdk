@@ -1,4 +1,4 @@
-import 'package:manifest_dart_sdk/manifest-dart-sdk.dart';
+import 'package:manifest_dart_sdk/manifest_dart_sdk.dart';
 
 void main() async {
   // Initialize the client
