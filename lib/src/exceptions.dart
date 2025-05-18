@@ -22,12 +22,10 @@ class NetworkException extends ManifestException {
   final dynamic originalException;
 
   /// Constructor
-  NetworkException(String message, this.originalException, [dynamic stackTrace])
-    : super(message, stackTrace);
+  NetworkException(String message, this.originalException, [dynamic stackTrace]) : super(message, stackTrace);
 
   @override
-  String toString() =>
-      'NetworkException: $message\nOriginal exception: $originalException';
+  String toString() => 'NetworkException: $message\nOriginal exception: $originalException';
 }
 
 /// Exception thrown for API errors
@@ -45,14 +43,8 @@ class ApiException extends ManifestException {
   final Map<String, dynamic>? errorData;
 
   /// Constructor
-  ApiException(
-    String message,
-    this.statusCode,
-    this.body, {
-    this.headers,
-    this.errorData,
-    dynamic stackTrace,
-  }) : super(message, stackTrace);
+  ApiException(String message, this.statusCode, this.body, {this.headers, this.errorData, dynamic stackTrace})
+    : super(message, stackTrace);
 
   @override
   String toString() => 'ApiException: $message (Status Code: $statusCode)';
@@ -70,8 +62,7 @@ class ApiException extends ManifestException {
       } else if (errorData.containsKey('error')) {
         if (errorData['error'] is String) {
           message = errorData['error'] as String;
-        } else if (errorData['error'] is Map &&
-            errorData['error']['message'] != null) {
+        } else if (errorData['error'] is Map && errorData['error']['message'] != null) {
           message = errorData['error']['message'] as String;
         }
       }
@@ -79,13 +70,7 @@ class ApiException extends ManifestException {
       // Could not parse the response body as JSON
     }
 
-    return ApiException(
-      message,
-      response.statusCode,
-      response.body,
-      headers: response.headers,
-      errorData: errorData,
-    );
+    return ApiException(message, response.statusCode, response.body, headers: response.headers, errorData: errorData);
   }
 }
 
@@ -102,8 +87,7 @@ class AuthenticationException extends ApiException {
   });
 
   @override
-  String toString() =>
-      'AuthenticationException: $message (Status Code: $statusCode)';
+  String toString() => 'AuthenticationException: $message (Status Code: $statusCode)';
 
   /// Factory constructor to create from HTTP response
   factory AuthenticationException.fromResponse(http.Response response) {
@@ -154,8 +138,7 @@ class ValidationException extends ApiException {
         final errorsMap = errorData['errors'] as Map<String, dynamic>;
         errorsMap.forEach((field, errors) {
           if (errors is List) {
-            validationErrors![field] =
-                (errors).map((e) => e.toString()).toList();
+            validationErrors![field] = (errors).map((e) => e.toString()).toList();
           } else if (errors is String) {
             validationErrors![field] = [errors];
           }
@@ -185,14 +168,7 @@ class NotFoundException extends ApiException {
     Map<String, String>? headers,
     Map<String, dynamic>? errorData,
     dynamic stackTrace,
-  }) : super(
-         message,
-         404,
-         body,
-         headers: headers,
-         errorData: errorData,
-         stackTrace: stackTrace,
-       );
+  }) : super(message, 404, body, headers: headers, errorData: errorData, stackTrace: stackTrace);
 
   @override
   String toString() => 'NotFoundException: $message';
@@ -212,14 +188,7 @@ class NotFoundException extends ApiException {
 /// Exception thrown for server errors (5xx)
 class ServerException extends ApiException {
   /// Constructor
-  ServerException(
-    super.message,
-    super.statusCode,
-    super.body, {
-    super.headers,
-    super.errorData,
-    super.stackTrace,
-  });
+  ServerException(super.message, super.statusCode, super.body, {super.headers, super.errorData, super.stackTrace});
 
   @override
   String toString() => 'ServerException: $message (Status Code: $statusCode)';
@@ -258,14 +227,7 @@ class RateLimitException extends ApiException {
     this.limit,
     this.remaining,
     dynamic stackTrace,
-  }) : super(
-         message,
-         429,
-         body,
-         headers: headers,
-         errorData: errorData,
-         stackTrace: stackTrace,
-       );
+  }) : super(message, 429, body, headers: headers, errorData: errorData, stackTrace: stackTrace);
 
   @override
   String toString() {
@@ -285,9 +247,7 @@ class RateLimitException extends ApiException {
 
     if (response.headers.containsKey('x-ratelimit-reset')) {
       try {
-        final resetTimestamp = int.parse(
-          response.headers['x-ratelimit-reset']!,
-        );
+        final resetTimestamp = int.parse(response.headers['x-ratelimit-reset']!);
         resetTime = DateTime.fromMillisecondsSinceEpoch(resetTimestamp * 1000);
       } catch (_) {}
     }
