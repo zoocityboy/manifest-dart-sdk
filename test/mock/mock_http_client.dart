@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'dart:convert';
 
 import 'package:http/http.dart';
@@ -40,22 +42,10 @@ Response _handleSingleEndpoints(Request request) {
   final slug = parts.last;
 
   if (request.method == 'GET') {
-    return Response(
-      json.encode({
-        'title': 'About Page',
-        'content': 'This is the about page content.',
-      }),
-      200,
-    );
+    return Response(json.encode({'title': 'About Page', 'content': 'This is the about page content.'}), 200);
   } else if (request.method == 'PUT') {
     final requestBody = json.decode(request.body);
-    return Response(
-      json.encode({
-        ...requestBody,
-        'updatedAt': DateTime.now().toIso8601String(),
-      }),
-      200,
-    );
+    return Response(json.encode({...requestBody, 'updatedAt': DateTime.now().toIso8601String()}), 200);
   } else if (request.method == 'PATCH') {
     final requestBody = json.decode(request.body);
     return Response(
@@ -75,35 +65,23 @@ Response _handleSingleEndpoints(Request request) {
 /// Handle collection entity endpoints
 Response _handleCollectionEndpoints(Request request) {
   final parts = request.url.path.split('/');
-  final slug =
-      parts[parts.length - 2 == 'collections'
-          ? parts.length - 1
-          : parts.length - 2];
+  final slug = parts[parts.length - 2 == 'collections' ? parts.length - 1 : parts.length - 2];
   final hasId = parts.length > 3 && parts[parts.length - 2] != 'collections';
   final id = hasId ? parts.last : null;
 
   // GET collection list
   if (request.method == 'GET' && !hasId) {
     final page = int.tryParse(request.url.queryParameters['page'] ?? '1') ?? 1;
-    final perPage =
-        int.tryParse(request.url.queryParameters['perPage'] ?? '10') ?? 10;
+    final perPage = int.tryParse(request.url.queryParameters['perPage'] ?? '10') ?? 10;
 
     List<Map<String, dynamic>> items = [];
     for (int i = 1; i <= 15; i++) {
-      items.add({
-        'id': i,
-        'title': 'Item $i',
-        'content': 'Content for item $i',
-      });
+      items.add({'id': i, 'title': 'Item $i', 'content': 'Content for item $i'});
     }
 
     final startIndex = (page - 1) * perPage;
-    final endIndex =
-        startIndex + perPage > items.length
-            ? items.length
-            : startIndex + perPage;
-    final pageItems =
-        startIndex < items.length ? items.sublist(startIndex, endIndex) : [];
+    final endIndex = startIndex + perPage > items.length ? items.length : startIndex + perPage;
+    final pageItems = startIndex < items.length ? items.sublist(startIndex, endIndex) : [];
 
     return Response(
       json.encode({
@@ -122,41 +100,20 @@ Response _handleCollectionEndpoints(Request request) {
   // GET single item
   if (request.method == 'GET' && hasId) {
     final idNum = int.parse(id!);
-    return Response(
-      json.encode({
-        'id': idNum,
-        'title': 'Item $idNum',
-        'content': 'Content for item $idNum',
-      }),
-      200,
-    );
+    return Response(json.encode({'id': idNum, 'title': 'Item $idNum', 'content': 'Content for item $idNum'}), 200);
   }
 
   // POST create item
   if (request.method == 'POST') {
     final requestBody = json.decode(request.body);
-    return Response(
-      json.encode({
-        'id': 16,
-        ...requestBody,
-        'createdAt': DateTime.now().toIso8601String(),
-      }),
-      201,
-    );
+    return Response(json.encode({'id': 16, ...requestBody, 'createdAt': DateTime.now().toIso8601String()}), 201);
   }
 
   // PUT update item
   if (request.method == 'PUT' && hasId) {
     final requestBody = json.decode(request.body);
     final idNum = int.parse(id!);
-    return Response(
-      json.encode({
-        'id': idNum,
-        ...requestBody,
-        'updatedAt': DateTime.now().toIso8601String(),
-      }),
-      200,
-    );
+    return Response(json.encode({'id': idNum, ...requestBody, 'updatedAt': DateTime.now().toIso8601String()}), 200);
   }
 
   // PATCH update item
@@ -194,10 +151,7 @@ Response _handleAuthEndpoints(Request request) {
     final password = requestBody['password'];
 
     if (email == 'user@example.com' && password == 'password123') {
-      return Response(
-        json.encode({'token': 'mock_jwt_token_for_testing'}),
-        200,
-      );
+      return Response(json.encode({'token': 'mock_jwt_token_for_testing'}), 200);
     } else {
       return Response(json.encode({'error': 'Invalid credentials'}), 401);
     }
@@ -214,14 +168,7 @@ Response _handleAuthEndpoints(Request request) {
     final authHeader = request.headers['Authorization'];
 
     if (authHeader != null && authHeader.startsWith('Bearer ')) {
-      return Response(
-        json.encode({
-          'email': 'user@example.com',
-          'id': 1,
-          'name': 'Test User',
-        }),
-        200,
-      );
+      return Response(json.encode({'email': 'user@example.com', 'id': 1, 'name': 'Test User'}), 200);
     } else {
       return Response(json.encode({'error': 'Unauthorized'}), 401);
     }

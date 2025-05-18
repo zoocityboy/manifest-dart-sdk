@@ -6,7 +6,18 @@
     <img alt="manifest" src="https://manifest.build/assets/images/logo-light.svg" height="55px" alt="Manifest logo" title="Manifest - The 1-file micro-backend" />
   </a>
 </p>
+
+Developed by 🦏 [zoocityboy][zoocityboy_link]
+
+
 # Manifest Dart SDK
+
+![Dart](https://img.shields.io/badge/Dart-0175C2?style=flat-square&logo=flutter&logoColor=white)
+[![Pub](https://img.shields.io/pub/v/manifest-dart-sdk.svg?style=flat-square)](https://pub.dev/packages/manifest-dart-sdk)
+[![pub points](https://img.shields.io/pub/points/manifest-dart-sdk?style=flat-square&color=2E8B57&label=pub%20points)](https://pub.dev/packages/manifest-dart-sdk/score)
+[![ci](https://github.com/zoocityboy/manifest-dart-sdk/actions/workflows/ci.yaml/badge.svg?style=flat-square)](https://github.com/zoocityboy/manifest-dart-sdk/actions/workflows/ci.yaml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-purple.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+
 
 A Dart client SDK for interacting with Manifest backend services. This SDK provides a clean and intuitive interface for communication with your Manifest backend, handling authentication, CRUD operations, and file uploads.
 
@@ -25,7 +36,7 @@ Add this package to your project's dependencies:
 
 ```yaml
 dependencies:
-  manifest_dart_sdk: ^1.0.0
+  manifest-dart-sdk: ^0.1.0
 ```
 
 Then run:
@@ -39,7 +50,7 @@ dart pub get
 ### Initialize the client
 
 ```dart
-import 'package:manifest_dart_sdk/manifest-dart-sdk.dart';
+import 'package:manifest-dart-sdk/manifest-dart-sdk.dart';
 
 void main() {
   // Default URL is http://localhost:1111
@@ -258,3 +269,15 @@ See the `/example` folder for a complete example of using the SDK.
 ## License
 
 MIT
+--------
+
+<picture id="github_zoocityboy">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/zoocityboy/zoo_brand/main/styles/README/zoocityboy_light.png">
+  <img alt="Flutter developer Zoocityboy" src="https://raw.githubusercontent.com/zoocityboy/zoo_brand/main/styles/README/zoocityboy_dark.png">
+</picture>
+
+[logo_black]:https://raw.githubusercontent.com/zoocityboy/zoo_brand/main/styles/README/zoocityboy_dark.png#gh-light-mode-only
+[logo_white]: https://raw.githubusercontent.com/zoocityboy/zoo_brand/main/styles/README/zoocityboy_light.png#gh-dark-mode-only
+[zoocityboy_link]: https://github.com/zoocityboy
+[zoocityboy_link_dark]: https://github.com/zoocityboy#gh-dark-mode-only
+[zoocityboy_link_light]: https://github.com/zoocityboy#gh-light-mode-only
