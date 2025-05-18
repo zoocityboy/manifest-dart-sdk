@@ -20,12 +20,4 @@ jobs:
       - name: Format check
         run: dart format --set-exit-if-changed .
       - name: Run coverage
-        run: dart test --coverage=coverage
-      - name: Upload coverage
-        uses: codecov/codecov-action@v3
-        with:
-          files: coverage/lcov.info
-          flags: unittests
-          name: codecov-umbrella
-          fail_ci_if_error: true
-          verbose: true
+        run: dart test -r github .
