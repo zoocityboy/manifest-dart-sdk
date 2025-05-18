@@ -70,10 +70,7 @@ void main() {
         'per_page': 10,
       };
 
-      final paginator = Paginator<Map<String, dynamic>>.fromJson(
-        json,
-        (item) => item as Map<String, dynamic>,
-      );
+      final paginator = Paginator<Map<String, dynamic>>.fromJson(json, (item) => item as Map<String, dynamic>);
 
       expect(paginator.data.length, equals(2));
       expect(paginator.data[0]['id'], equals(1));
@@ -99,14 +96,8 @@ void main() {
       final thumbUrl = client.imageUrl(imageData, 'thumbnail');
       final mediumUrl = client.imageUrl(imageData, 'medium');
 
-      expect(
-        thumbUrl,
-        equals('http://localhost:1111/storage/path/to/thumb.jpg'),
-      );
-      expect(
-        mediumUrl,
-        equals('http://localhost:1111/storage/path/to/medium.jpg'),
-      );
+      expect(thumbUrl, equals('http://localhost:1111/storage/path/to/thumb.jpg'));
+      expect(mediumUrl, equals('http://localhost:1111/storage/path/to/medium.jpg'));
     });
   });
 }

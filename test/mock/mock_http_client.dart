@@ -1,4 +1,4 @@
-// ignore_for_file: unused_local_variable
+// ignore_for_file: unused_local_variable, unrelated_type_equality_checks
 
 import 'dart:convert';
 

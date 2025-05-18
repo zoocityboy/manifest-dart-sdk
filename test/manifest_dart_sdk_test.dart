@@ -53,13 +53,8 @@ void main() {
     final client = Manifest('http://localhost:1111');
 
     test('imageUrl formats URL correctly', () {
-      final imageUrl = client.imageUrl({
-        'thumbnail': 'path/to/image.jpg',
-      }, 'thumbnail');
-      expect(
-        imageUrl,
-        equals('http://localhost:1111/storage/path/to/image.jpg'),
-      );
+      final imageUrl = client.imageUrl({'thumbnail': 'path/to/image.jpg'}, 'thumbnail');
+      expect(imageUrl, equals('http://localhost:1111/storage/path/to/image.jpg'));
     });
   });
 }

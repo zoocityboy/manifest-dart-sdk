@@ -20,11 +20,7 @@ class SingleEntity {
   /// [data] The data to update the single entity with.
   /// Returns a Future resolving to the updated single entity.
   Future<T> update<T>(Map<String, dynamic> data) async {
-    final response = await _manifest._fetch(
-      path: '/singles/${_manifest.slug}',
-      method: 'PUT',
-      body: data,
-    );
+    final response = await _manifest._fetch(path: '/singles/${_manifest.slug}', method: 'PUT', body: data);
 
     return response as T;
   }
@@ -34,11 +30,7 @@ class SingleEntity {
   /// [data] The data to update the single entity with.
   /// Returns a Future resolving to the updated single entity.
   Future<T> patch<T>(Map<String, dynamic> data) async {
-    final response = await _manifest._fetch(
-      path: '/singles/${_manifest.slug}',
-      method: 'PATCH',
-      body: data,
-    );
+    final response = await _manifest._fetch(path: '/singles/${_manifest.slug}', method: 'PATCH', body: data);
 
     return response as T;
   }

@@ -40,9 +40,7 @@ void main() async {
     // Get a paginated list of posts
     try {
       var posts = await client.from('posts').find(page: 1, perPage: 10);
-      print(
-        'Found ${posts.total} posts. Showing page ${posts.currentPage} of ${posts.lastPage}',
-      );
+      print('Found ${posts.total} posts. Showing page ${posts.currentPage} of ${posts.lastPage}');
       for (var post in posts.data) {
         print('- ${post['title']}');
       }
@@ -93,9 +91,7 @@ void main() async {
 
     try {
       // Partially update a post
-      var patchedPost = await client.from('posts').patch(1, {
-        'title': 'Patched Post',
-      });
+      var patchedPost = await client.from('posts').patch(1, {'title': 'Patched Post'});
       print('Patched post: ${patchedPost['title']}');
     } on NotFoundException catch (e) {
       print('Post to patch not found: ${e.message}');
