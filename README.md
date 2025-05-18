@@ -13,8 +13,8 @@ Developed by 🦏 [zoocityboy][zoocityboy_link]
 # Manifest Dart SDK
 
 ![Dart](https://img.shields.io/badge/Dart-0175C2?style=flat-square&logo=flutter&logoColor=white)
-[![Pub](https://img.shields.io/pub/v/manifest-dart-sdk.svg?style=flat-square)](https://pub.dev/packages/manifest-dart-sdk)
-[![pub points](https://img.shields.io/pub/points/manifest-dart-sdk?style=flat-square&color=2E8B57&label=pub%20points)](https://pub.dev/packages/manifest-dart-sdk/score)
+[![Pub](https://img.shields.io/pub/v/manifest-dart-sdk.svg?style=flat-square)](https://pub.dev/packages/manifest_dart_sdk)
+[![pub points](https://img.shields.io/pub/points/manifest-dart-sdk?style=flat-square&color=2E8B57&label=pub%20points)](https://pub.dev/packages/manifest_dart_sdk/score)
 [![ci](https://github.com/zoocityboy/manifest-dart-sdk/actions/workflows/ci.yaml/badge.svg?style=flat-square)](https://github.com/zoocityboy/manifest-dart-sdk/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-purple.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
