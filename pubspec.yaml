@@ -1,6 +1,6 @@
 name: manifest_dart_sdk
 description: A Dart SDK for Manifest - a lightweight micro-backend solution with minimal dependencies
-version: 0.1.0
+version: 0.1.1
 homepage: https://zoocityboy.github.io/
 documentation: https://pub.dev/documentation/manifest_dart_sdk/latest/
 repository: https://github.com/zoocityboy/manifest-dart-sdk
@@ -9,6 +9,9 @@ topics:
   - manifest
   - dart-sdk
   - micro-backend
+
+# This package is compatible with Dart's WebAssembly (WASM) target.
+# No dart:io dependencies are used; all HTTP operations use the 'http' package.
 
 environment:
   sdk: ">=3.7.0 <4.0.0"

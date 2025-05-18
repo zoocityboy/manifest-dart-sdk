@@ -1,9 +1,9 @@
 <p align="center">
   <a href="https://manifest.build/#gh-light-mode-only">
-    <img alt="manifest" src="https://manifest.build/assets/images/logo-transparent.svg" height="55px" alt="Manifest logo" title="Manifest - The 1-file micro-backend" />
-  </a>
-  <a href="https://manifest.build/#gh-dark-mode-only">
-    <img alt="manifest" src="https://manifest.build/assets/images/logo-light.svg" height="55px" alt="Manifest logo" title="Manifest - The 1-file micro-backend" />
+    <picture id="github_header">
+      <source media="(prefers-color-scheme: dark)" srcset="https://manifest.build/assets/images/logo-transparent.svg">
+      <img alt="Doki Dont kill my app!" src="https://manifest.build/assets/images/logo-transparent.svg" height="55px" alt="Manifest logo" title="Manifest - The 1-file micro-backend">
+    </picture>
   </a>
 </p>
 
@@ -36,7 +36,7 @@ Add this package to your project's dependencies:
 
 ```yaml
 dependencies:
-  manifest-dart-sdk: ^0.1.0
+  manifest-dart-sdk: ^0.1.1
 ```
 
 Then run:
@@ -261,6 +261,10 @@ for (var post in posts.data) {
   print('Post ${post.id}: ${post.title}');
 }
 ```
+
+## WASM Compatibility
+
+This package is compatible with Dart's WebAssembly (WASM) target. All HTTP operations use the `http` package, which supports WASM and web environments. No `dart:io` dependencies are present.
 
 ## Complete Example
 

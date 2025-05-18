@@ -1,3 +1,10 @@
+## 0.1.1
+**FIX**: 
+- WASM compatible
+
+**DOC**:
+- documentation updates
+
 ## 0.1.0
 
 - Initial release of the manifest-dart-sdk package.
