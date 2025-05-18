@@ -1,0 +1,74 @@
+name: My pet app 🐾
+entities:
+  Users:
+    policies: 
+      read: 
+        - { access: public}
+      create: 
+        - { access: public }
+    properties:
+      - name
+      - { name: age, type: number }
+      - { name: email, type: string }
+      - { name: password, type: string }
+      - { name: resume, type: file }
+      - {
+          name: profilePicture,
+          type: image,
+          options:
+            {
+              sizes:
+                {
+                  standard: { height: 256, width: 256 },
+                  thumbnail: { height: 64, width: 64 }
+                }
+            }
+        }
+  Posts:
+    policies: 
+      read: 
+        - { access: public}
+      create: 
+        - { access: public }
+      
+    properties:
+      - title
+      - { name: content, type: string }
+      - { name: createdAt, type: timestamp }
+    belongsTo:
+      - Users
+
+  Homepage:
+    single: true
+    policies: 
+      read: 
+        - { access: public}
+      create: 
+        - { access: public }
+      update: 
+        - { access: public }
+      delete:
+        - { access: public }
+    properties:
+      - title
+      - { name: description, type: richText }
+      - { name: cover, type: image }
+      - { name: createdAt, type: timestamp }
+      - { name: updatedAt, type: timestamp }
+  about:
+    single: true
+    policies: 
+      read: 
+        - { access: public}
+      create: 
+        - { access: public }
+      update: 
+        - { access: public }
+      delete:
+        - { access: public }
+    properties:
+      - title
+      - { name: description, type: richText }
+      - { name: cover, type: image }
+      - { name: createdAt, type: timestamp }
+      - { name: updatedAt, type: timestamp }
