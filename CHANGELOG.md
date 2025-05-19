@@ -1,3 +1,7 @@
+## 0.1.2+1
+
+- README.md fixes
+
 ## 0.1.2
 
 - README.md fixes
