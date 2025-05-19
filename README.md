@@ -1,8 +1,8 @@
 <p align="center">
-  <a href="https://manifest.build/" target="_blank">
-    <picture id="github_header">
-      <source media="(prefers-color-scheme: dark)" srcset="https://manifest.build/assets/images/logo-transparent.svg">
-      <img alt="Doki Dont kill my app!" src="https://manifest.build/assets/images/logo-transparent.svg" height="55px" alt="Manifest logo" title="Manifest - The 1-file micro-backend">
+  <a href="https://manifest.build/">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://manifest.build/assets/images/logo-light.svg">
+      <img src="https://manifest.build/assets/images/logo-transparent.svg" height="55px" alt="Manifest logo" title="Manifest - The 1-file micro-backend">
     </picture>
   </a>
 </p>
@@ -13,9 +13,10 @@ Developed by 🦏 [zoocityboy][zoocityboy_link]
 # Manifest Dart SDK
 
 ![Dart](https://img.shields.io/badge/Dart-0175C2?style=flat-square&logo=flutter&logoColor=white)
-[![Pub](https://img.shields.io/pub/v/manifest-dart-sdk.svg?style=flat-square)](https://pub.dev/packages/manifest_dart_sdk)
+[![Pub](https://img.shields.io/pub/v/manifest_dart_sdk.svg?style=flat-square)](https://pub.dev/packages/manifest_dart_sdk)
 [![pub points](https://img.shields.io/pub/points/manifest-dart-sdk?style=flat-square&color=2E8B57&label=pub%20points)](https://pub.dev/packages/manifest_dart_sdk/score)
-[![ci](https://github.com/zoocityboy/manifest-dart-sdk/actions/workflows/ci.yaml/badge.svg?style=flat-square)](https://github.com/zoocityboy/manifest-dart-sdk/actions/workflows/ci.yml)
+[![ci](https://github.com/zoocityboy/manifest-dart-sdk/actions/workflows/ci.yml/badge.svg?style=flat-square)](https://github.com/zoocityboy/manifest-dart-sdk/actions/workflows/ci.yml)
+[![CodeFactor](https://www.codefactor.io/repository/github/zoocityboy/manifest-dart-sdk/badge)](https://www.codefactor.io/repository/github/zoocityboy/manifest-dart-sdk)
 [![License: MIT](https://img.shields.io/badge/license-MIT-purple.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
 
@@ -36,7 +37,7 @@ Add this package to your project's dependencies:
 
 ```yaml
 dependencies:
-  manifest-dart-sdk: 
+  manifest_dart_sdk: 
 ```
 
 Then run:
